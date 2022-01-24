@@ -41,7 +41,8 @@ const reducer = (state = initialState, action) => {
             }
         case SET_USER_DIET_DAYS:
             return {
-                userDiet: state.userDiet
+                ...state,
+                userDietDays: action.payload
             }
         case SET_USER_TARGET_CALORIES:
             return {
@@ -50,7 +51,6 @@ const reducer = (state = initialState, action) => {
             }
         case SET_START_DATE:
             return {
-                userDiet: state.userDiet
             }
 
 

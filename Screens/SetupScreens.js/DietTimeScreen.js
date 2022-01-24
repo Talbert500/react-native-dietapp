@@ -4,15 +4,15 @@ import {Button, ListItem } from 'react-native-elements';
 import { Divider } from 'react-native-elements/dist/divider/Divider';
 import { styleProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
 import { useSelector, useDispatch } from 'react-redux';
-import {setUserAllergies, setUserTargetCalories} from '../../redux/action'
+import {setUserAllergies, setUserTargetCalories,setUserDietDays} from '../../redux/action'
 
 
 
 function DietTimeScreen({navigation}){
-    const userDiet = useSelector(state => state.userDiet)
-    const calories = useSelector(state=> state.calories)
-    const [calor,setCalor] = useState("2000")
+
+    const [calor,setCalor] = useState("")
     const [aller,setAller] = useState("")
+    const [days,setDays] = useState("")
     const dispatch = useDispatch();
 
     function setCalories () {
@@ -20,6 +20,9 @@ function DietTimeScreen({navigation}){
     }
     function setAllergies () {
         dispatch(setUserAllergies(aller))
+    }
+    function setUserDays(){
+        dispatch(setUserDietDays(days))
     }
 
     return (
@@ -42,6 +45,19 @@ function DietTimeScreen({navigation}){
                 value={aller}
                 placeholder= "Sperate allergies with commas"
             />
+            <View>
+                <Text style= {styles.categories}>
+                    How long did you want to diet for?
+                </Text>
+                <TextInput           
+                style={styles.input}
+                onEndEditing={setUserDays}
+                onChangeText={setDays}
+                value={days}
+                placeholder= "7 is the max amount of days"
+                keyboardType = 'number-pad'
+            />
+            </View>
 
             <Button buttonStyle ={styles.button} title ="Next" onPress={()=> navigation.navigate('Confirm')}></Button>
         </View>

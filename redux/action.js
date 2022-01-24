@@ -33,10 +33,10 @@ export const setUserAllergies = allergies => {
         payload: allergies
     }
 }
-export const setUserDietDays = () => {
+export const setUserDietDays = userDietDays => {
     return {
         type: SET_USER_DIET_DAYS,
-        payload:"test"
+        payload: userDietDays
     }
 }
 export const setStartDate = () => {

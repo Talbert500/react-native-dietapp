@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 function HomeScreen() {
     const userDiet = useSelector(state => state.userDiet)
     const meals = useSelector(state=> state.meals)
+    const userDietDays = useSelector(state => state.userDietDays)
 
     console.log("Home screen meals:", meals)
 
@@ -61,7 +62,8 @@ function HomeScreen() {
 
 
             />
-            <Text>Home Screen</Text>
+            <View><Text style = {styles.titleText}>You have {userDietDays} Left!</Text></View>
+
         </SafeAreaView>
 
     );
@@ -91,6 +93,13 @@ const styles = StyleSheet.create({
     },
     headerTitleText: {
         textAlign:'left',
+        fontWeight: 'bold',
+        fontSize: 45,
+        margin:15,
+        color: '#4682b4'
+    },
+    titleText: {
+        textAlign:'center',
         fontWeight: 'bold',
         fontSize: 45,
         margin:15,
