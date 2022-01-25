@@ -18,11 +18,12 @@ function DietConfirmationScreen({ navigation }) {
 
 
     function setMeals (){
-        dispatch(fetchDietSuccess([data]))
-        console.log("Your meals are" , data)
+        dispatch(fetchDietSuccess(data))
     }
 
-    const getData = () => {
+    // Need to fix the set meals and making sure it gets added before homescreen 
+
+    const getData = async => {
         const options = {
             method: 'GET',
             url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate',
@@ -43,18 +44,17 @@ function DietConfirmationScreen({ navigation }) {
             setData(data => [...data, { meals: response.data["meals"]["0"]["title"] ,image_url: response.data["meals"]["0"]["sourceUrl"] }])
             setData(data => [...data, { meals: response.data["meals"]["1"]["title"] ,image_url: response.data["meals"]["1"]["sourceUrl"] }])
             setData(data => [...data, { meals: response.data["meals"]["2"]["title"] ,image_url: response.data["meals"]["2"]["sourceUrl"] }])
-            setMeals();
         }).catch(function (error) {
             console.error(error);
         }).then(function () {
-            console.log(data);
+            setMeals();
+            console.log("then data"+ data);
            
         })
 
     }
     useEffect(()=>{
         getData()
-
     },[])
 
     return (

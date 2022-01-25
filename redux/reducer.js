@@ -30,6 +30,7 @@ const reducer = (state = initialState, action) => {
                 allergies: action.payload
             }
         case FETCH_DIET_SUCCESS:
+            console.log("Meals added"+ JSON.stringify(state.meals))
             return {
                 ...state,
                 meals: action.payload,
